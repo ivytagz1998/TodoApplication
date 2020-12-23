@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   text:any;
   oldText:any;
   id:any;
+  index=0;
   status = false;
   state = 'default';
   activeTodo:any=[];
@@ -71,16 +72,22 @@ export class AppComponent implements OnInit{
     this.todoService.deleteTodo(id);
   }
 
-  editTodo(id:any,todo:any){
+  editTodo(id:any,todo:any, i:any){
     this.state = 'edit';
     this.oldText = todo;
     this.text = todo;
     this.id=id;
+    this.index = i
   }
 
   updateTodo(){
     this.todoService.updateTodo(this.id, this.text);
-    this.activeTodo=this.todoService.getTodos();
+    let todos = this.todoService.getTodos();
+    for(let i=0; i<todos.length; i++){
+      if( todos[i].id === this.id ){
+        this.activeTodo[this.index] =  todos[i]
+      }
+    }
   }
   
   CompletedTodo(id:any, x:any){

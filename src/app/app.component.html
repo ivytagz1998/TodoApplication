@@ -210,7 +210,7 @@ td, th {
       <tr *ngFor="let todo of activeTodo; let i=index">
         <td><input type="checkbox" (click)="CompletedTodo(todo.id, i)">&nbsp;&nbsp;{{todo.text}}</td>
         <td>
-          <button (click)="editTodo(todo.id,todo.text)">Edit</button>&nbsp;&nbsp;
+          <button (click)="editTodo(todo.id,todo.text,i)">Edit</button>&nbsp;&nbsp;
           <button (click)="deleteTodo(todo.id, i)">Remove</button>
         </td>
         <td>{{todo.dateCreated}}</td>
